@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface CustomerService {
 
-    Customer getById(Long id);
+    Customer getById(Integer id);
 
     void save(Customer customer);
 
-    void delete(Long id);
+    void delete(Integer id);
 
     List<Customer> getAll();
 }

@@ -14,17 +14,16 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customers")
-public class CustomerRestContriller {
+@RequestMapping("/customers/")
+public class CustomerRestController {
     @Autowired
     private CustomerService customerService;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long customerId){
+    public ResponseEntity<Customer> getCustomer(@PathVariable("id") Integer customerId){
         if(customerId == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
         Customer customer = this.customerService.getById(customerId);
         if(customer == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -54,7 +53,7 @@ public class CustomerRestContriller {
         return new ResponseEntity<>(customer, headers, HttpStatus.OK);
     }
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") Long id) {
+    public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") Integer id) {
         Customer customer = this.customerService.getById(id);
 
         if (customer == null) {
